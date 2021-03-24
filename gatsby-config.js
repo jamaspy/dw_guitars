@@ -6,6 +6,10 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: "dw_guitar_academy",
+    description: `Online Guitar Academy`,
+    author: `James Aspinall (dapperdesigner)`,
+    siteUrl: "https://www.dwguitaracademy.com.au/",
+    image: "./src/images/icon.png",
   },
   plugins: [
     {
