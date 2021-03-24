@@ -1,3 +1,8 @@
+const path = require(`path`);
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: "dw_guitar_academy",
@@ -6,7 +11,7 @@ module.exports = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        accessToken: "X0vMxoZUSBdtg1F6tIcIEAV-Pa1dQM6hh0U62zouxtg",
+        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
         spaceId: "3odc0ta9u67m",
       },
     },
