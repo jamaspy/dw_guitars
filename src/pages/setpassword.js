@@ -11,7 +11,8 @@ const Setpassword = () => {
   const dispatch = useContext(GlobalDispatchContext);
   // const token = location?.hash.split("=")[1];
   const { token } = contextState;
-  console.log("Token from contextState", token);
+  console.log("setPassword TOKEN", token);
+  console.log("setPassword ContextState", contextState);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",

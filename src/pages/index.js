@@ -8,12 +8,17 @@ import {
 // markup
 const IndexPage = ({ location }) => {
   const dispatch = useContext(GlobalDispatchContext);
-
+  const contextState = useContext(GlobalStateContext);
   const token = location?.hash.split("=")[1];
-  if (token) {
-    dispatch({ type: "SET_INVITE_TOKEN", token: token });
-    // navigate("setpassword");
-  }
+
+  console.log("INDEX TOKEN", token);
+  console.log("Index ContextState", contextState);
+
+  useEffect(() => {
+    if (token) {
+      dispatch({ type: "SET_INVITE_TOKEN", token: token });
+    }
+  }, []);
 
   // const auth = new GoTrue({
   //   APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
@@ -47,6 +52,9 @@ const IndexPage = ({ location }) => {
     <main>
       <title>Home Page</title>
       <h1>Welcome To DW Guitars Academy</h1>
+      <button onlClick={() => navigate("setpassword")}>
+        Set Password Page
+      </button>
     </main>
   );
 };
