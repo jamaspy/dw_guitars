@@ -20,7 +20,7 @@ const IndexPage = ({ location }) => {
     if (contextState.token) {
       navigate("/setpassword");
     }
-  }, []);
+  }, [contextState.token]);
 
   console.log("Index ContextState", contextState);
 
