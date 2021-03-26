@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { navigate } from "gatsby";
 import GoTrue from "gotrue-js";
-
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../context/GlobalContextProvider";
 // markup
 const IndexPage = ({ location, history }) => {
+  const dispatch = useContext(GlobalDispatchContext);
+  const contextState = useContext(GlobalStateContext);
+  console.log("contextState", contextState);
+  console.log("dispatch", dispatch);
   const token = location?.hash.split("=")[1];
   if (token) {
+    dispatch({ type: "SET_INVITE_TOKEN", token: token });
     navigate("setpassword");
   }
-  console.log("TESTY This is token", token);
+
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
@@ -40,6 +48,13 @@ const IndexPage = ({ location, history }) => {
   return (
     <main>
       <title>Home Page</title>
+      <button
+        onClick={() => {
+          dispatch({ type: "SET_INVITE_TOKEN", token: "PPOOPOO" });
+        }}
+      >
+        SET TOKEN
+      </button>
       <h1>DW_Guitars</h1>
       <label htmlFor="password">
         Set Your Password

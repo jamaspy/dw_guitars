@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import GoTrue from "gotrue-js";
 import { navigate } from "gatsby";
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../context/GlobalContextProvider";
 // markup
 const Setpassword = ({ location }) => {
   console.log("TESTY THIS IS LOCATION", location);
-  console.log("TESTY THIS IS LOCATION", location?.hash);
-
-  const token = location?.hash.split("=")[1];
-  console.log("TESTY This is token", token);
+  console.log("TESTY THIS IS LOCATION.HASH", location?.hash);
+  const contextState = useContext(GlobalStateContext);
+  const dispatch = useContext(GlobalDispatchContext);
+  // const token = location?.hash.split("=")[1];
+  const { token } = contextState;
+  console.log("Token from contextState", token);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
@@ -30,6 +36,7 @@ const Setpassword = ({ location }) => {
     auth
       .acceptInvite(token, password)
       .then((res) => {
+        dispatch({ type: "SET_INVITE_TOKEN", token: undefined });
         console.log("RES from Signup", res?.token?.access_token);
         navigate("/");
       })
