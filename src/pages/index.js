@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import GoTrue from "gotrue-js";
 
 // markup
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
+  console.log("TESTY THIS IS LOCATION", location);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
@@ -30,8 +31,6 @@ const IndexPage = () => {
   // };
 
   const setPassword = () => {
-    let params = new URLSearchParams(document.location.search.substring(1));
-    let token = params.get("invite_token");
     const { password } = state;
     auth
       .acceptInvite(token, password)
