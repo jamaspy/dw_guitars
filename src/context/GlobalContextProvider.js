@@ -4,7 +4,8 @@ export const GlobalStateContext = React.createContext();
 export const GlobalDispatchContext = React.createContext();
 
 const initialState = {
-  token: "",
+  invite_token: "",
+  access_token: "",
 };
 
 function reducer(state, action) {
@@ -12,7 +13,13 @@ function reducer(state, action) {
     case "SET_INVITE_TOKEN": {
       return {
         ...state,
-        token: action.token,
+        invite_token: action.token,
+      };
+    }
+    case "SET_ACCESS_TOKEN": {
+      return {
+        ...state,
+        access_token: action.token,
       };
     }
     default:

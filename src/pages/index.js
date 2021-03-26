@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { navigate, Link } from "gatsby";
 import GoTrue from "gotrue-js";
 import {
@@ -22,53 +22,37 @@ const IndexPage = ({ location }) => {
     }
   }, [contextState.token]);
 
-  console.log("Index ContextState", contextState);
-
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
     setCookie: false,
   });
-
-  const [login, setLogin] = useState("");
-
-  const handleChange = (evt) => {
-    const value = evt.target.value;
-    setLogin({
-      ...login,
-      [evt.target.name]: value,
-    });
-    console.log(login);
-  };
-
-  const handleLogin = () => {
-    const { email, password } = login;
-    auth
-      .login(email, password, true)
-      .then((response) => {
-        console.log("LOGIN RES", response);
+  const user = auth.currentUser();
+  const handleLogOut = () => {
+    user
+      .logout()
+      .then(() => {
+        dispatch({
+          type: "SET_ACCESS_TOKEN",
+          token: undefined,
+        });
+        console.log("User Logged Out");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.log("Failed to logout user: %o", error);
+        throw error;
+      });
   };
 
   return (
     <main>
       <title>Home Page</title>
       <h1>Welcome To DW Guitars Academy</h1>
-      <label htmlFor="email">
-        Email
-        <input name="email" type="email" onChange={(e) => handleChange(e)} />
-      </label>
-      <label htmlFor="email">
-        Password
-        <input
-          name="password"
-          type="password"
-          onChange={(e) => handleChange(e)}
-        />
-      </label>
-      <button onClick={handleLogin}>login</button>
-      <Link to="/setpassword">Set Password Page</Link>
+      {contextState.access_token ? (
+        <button onClick={handleLogOut}>Logout</button>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
     </main>
   );
 };

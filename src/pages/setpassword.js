@@ -37,7 +37,7 @@ const Setpassword = () => {
       .then((res) => {
         dispatch({ type: "SET_INVITE_TOKEN", token: undefined });
         console.log("RES from Signup", res?.token?.access_token);
-        navigate("/");
+        navigate("/login");
       })
       .catch((err) => console.error(err));
   };
