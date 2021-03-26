@@ -6,9 +6,7 @@ import {
   GlobalStateContext,
 } from "../context/GlobalContextProvider";
 // markup
-const Setpassword = ({ location }) => {
-  console.log("TESTY THIS IS LOCATION", location);
-  console.log("TESTY THIS IS LOCATION.HASH", location?.hash);
+const Setpassword = () => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
   // const token = location?.hash.split("=")[1];
