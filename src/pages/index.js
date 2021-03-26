@@ -30,13 +30,13 @@ const IndexPage = ({ location }) => {
   //     .catch((error) => console.error(error));
   // };
 
-  const setPassword = () => {
-    const { password } = state;
-    auth
-      .acceptInvite(token, password)
-      .then((res) => console.log("RES from Signup", res))
-      .catch((err) => console.error(err));
-  };
+  // const setPassword = () => {
+  //   const { password } = state;
+  //   auth
+  //     .acceptInvite(token, password)
+  //     .then((res) => console.log("RES from Signup", res))
+  //     .catch((err) => console.error(err));
+  // };
 
   return (
     <main>
@@ -58,7 +58,7 @@ const IndexPage = ({ location }) => {
           onChange={(event) => handleChange(event)}
         />
       </label>
-      <button onClick={setPassword}>Set Password</button>
+      {/* <button onClick={setPassword}>Set Password</button> */}
     </main>
   );
 };
