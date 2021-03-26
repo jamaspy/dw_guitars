@@ -4,6 +4,10 @@ import GoTrue from "gotrue-js";
 // markup
 const IndexPage = ({ location }) => {
   console.log("TESTY THIS IS LOCATION", location);
+  console.log("TESTY THIS IS LOCATION", location?.hash);
+
+  const token = location?.hash.split("=")[1];
+  console.log("TESTY This is token", token);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
@@ -30,35 +34,27 @@ const IndexPage = ({ location }) => {
   //     .catch((error) => console.error(error));
   // };
 
-  // const setPassword = () => {
-  //   const { password } = state;
-  //   auth
-  //     .acceptInvite(token, password)
-  //     .then((res) => console.log("RES from Signup", res))
-  //     .catch((err) => console.error(err));
-  // };
+  const setPassword = () => {
+    const { password } = state;
+    auth
+      .acceptInvite(token, password)
+      .then((res) => console.log("RES from Signup", res))
+      .catch((err) => console.error(err));
+  };
 
   return (
     <main>
       <title>Home Page</title>
       <h1>DW_Guitars</h1>
-      <label htmlFor="email">
-        Email
-        <input
-          name="email"
-          type="email"
-          onChange={(event) => handleChange(event)}
-        />
-      </label>
       <label htmlFor="password">
-        Pasword
+        Set Your Password
         <input
           name="password"
           type="password"
           onChange={(event) => handleChange(event)}
         />
       </label>
-      {/* <button onClick={setPassword}>Set Password</button> */}
+      <button onClick={setPassword}>Set Password</button>
     </main>
   );
 };
