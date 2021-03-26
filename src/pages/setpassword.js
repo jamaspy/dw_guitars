@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { navigate } from "gatsby";
 import GoTrue from "gotrue-js";
-
+import { navigate } from "gatsby";
 // markup
-const IndexPage = ({ location, history }) => {
+const Setpassword = ({ location }) => {
+  console.log("TESTY THIS IS LOCATION", location);
+  console.log("TESTY THIS IS LOCATION", location?.hash);
+
   const token = location?.hash.split("=")[1];
-  if (token) {
-    navigate("setpassword");
-  }
   console.log("TESTY This is token", token);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
@@ -26,21 +25,21 @@ const IndexPage = ({ location, history }) => {
     console.log(state);
   };
 
-  const handleLogin = () => {
-    const { email, password } = state;
+  const setPassword = () => {
+    const { password } = state;
     auth
-      .login(email, password, true)
-      .then((response) => {
-        console.log(response);
-        console.log(JSON.stringify(response));
+      .acceptInvite(token, password)
+      .then((res) => {
+        console.log("RES from Signup", res?.token?.access_token);
+        navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((err) => console.error(err));
   };
 
   return (
     <main>
       <title>Home Page</title>
-      <h1>DW_Guitars</h1>
+      <h1>Welcome, lets setup your password</h1>
       <label htmlFor="password">
         Set Your Password
         <input
@@ -49,9 +48,9 @@ const IndexPage = ({ location, history }) => {
           onChange={(event) => handleChange(event)}
         />
       </label>
-      <button onClick={handleLogin}>Set Password</button>
+      <button onClick={setPassword}>Set Password</button>
     </main>
   );
 };
 
-export default IndexPage;
+export default Setpassword;
