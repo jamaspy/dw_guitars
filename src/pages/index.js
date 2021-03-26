@@ -38,10 +38,6 @@ const IndexPage = ({ location }) => {
       .catch((err) => console.error(err));
   };
 
-  let params = new URLSearchParams(document.location.search.substring(1));
-  let token = params.get("token");
-  console.log("TESTY Params", params);
-  console.log("TESTY token", token);
   return (
     <main>
       <title>Home Page</title>
