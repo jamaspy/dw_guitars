@@ -6,6 +6,7 @@ export const GlobalDispatchContext = React.createContext();
 const initialState = {
   invite_token: "",
   access_token: "",
+  login_error: "",
 };
 
 function reducer(state, action) {
@@ -20,6 +21,12 @@ function reducer(state, action) {
       return {
         ...state,
         access_token: action.token,
+      };
+    }
+    case "SET_LOGIN_ERROR": {
+      return {
+        ...state,
+        login_error: action.error,
       };
     }
     default:

@@ -49,9 +49,12 @@ const IndexPage = ({ location }) => {
       <title>Home Page</title>
       <h1>Welcome To DW Guitars Academy</h1>
       {contextState.access_token ? (
-        <button onClick={handleLogOut}>Logout</button>
+        <>
+          <Link to="/app/dashboard">Enter Dashboard</Link>
+          <button onClick={handleLogOut}>Log Out</button>
+        </>
       ) : (
-        <Link to="/login">Login</Link>
+        <Link to="/app/login">Login</Link>
       )}
     </main>
   );
