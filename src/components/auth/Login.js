@@ -5,6 +5,7 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../../context/GlobalContextProvider";
+import * as loginStyles from "../../scss/login.module.scss";
 const Login = () => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
@@ -35,28 +36,39 @@ const Login = () => {
           type: "SET_ACCESS_TOKEN",
           token: response.token.access_token,
         });
-        console.log("LOGIN RES", response);
+        dispatch({
+          type: "SET_LOGIN_ERROR",
+          error: "",
+        });
         setLoading(false);
         navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        dispatch({
+          type: "SET_LOGIN_ERROR",
+          error: error.json.error_description,
+        });
+        setLoading(false);
+      });
   };
 
   return (
-    <main>
-      <label htmlFor="email">
-        Email
+    <main className={loginStyles.form_container}>
+      <div className={loginStyles.form_input_field}>
+        <label htmlFor="email">Email </label>
         <input name="email" type="email" onChange={(e) => handleChange(e)} />
-      </label>
-      <label htmlFor="email">
-        Password
+      </div>
+
+      <div className={loginStyles.form_input_field}>
+        <label htmlFor="email">Password</label>
         <input
           name="password"
           type="password"
           onChange={(e) => handleChange(e)}
         />
-      </label>
-      <button onClick={handleLogin}>
+      </div>
+      <p className={loginStyles.error_message}>{contextState.login_error}</p>
+      <button className={loginStyles.form_button} onClick={handleLogin}>
         {loading ? "Logging In..." : "Login"}
       </button>
       <Link to="/">Home</Link>
