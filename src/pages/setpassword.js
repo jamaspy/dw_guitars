@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import GoTrue from "gotrue-js";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 import {
   GlobalDispatchContext,
   GlobalStateContext,
@@ -9,7 +9,7 @@ import {
 const Setpassword = () => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
-  // const token = location?.hash.split("=")[1];
+
   const { token } = contextState;
   console.log("setPassword TOKEN", token);
   console.log("setPassword ContextState", contextState);
@@ -46,6 +46,8 @@ const Setpassword = () => {
     <main>
       <title>Home Page</title>
       <h1>Welcome, lets setup your password</h1>
+      <h1>This is token: {token}</h1>
+      <Link to="/">Home</Link>
       <label htmlFor="password">
         Set Your Password
         <input

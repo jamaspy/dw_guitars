@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 import GoTrue from "gotrue-js";
 import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../context/GlobalContextProvider";
-// markup
+
 const IndexPage = ({ location }) => {
   const dispatch = useContext(GlobalDispatchContext);
   const contextState = useContext(GlobalStateContext);
@@ -14,11 +14,13 @@ const IndexPage = ({ location }) => {
   console.log("INDEX TOKEN", token);
   console.log("Index ContextState", contextState);
 
+  if (token) {
+    dispatch({ type: "SET_INVITE_TOKEN", token: token });
+  }
+
   useEffect(() => {
-    if (token) {
-      dispatch({ type: "SET_INVITE_TOKEN", token: token });
-    }
-  }, []);
+    dispatch({ type: "SET_INVITE_TOKEN", token: token });
+  }, [token]);
 
   // const auth = new GoTrue({
   //   APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
@@ -52,9 +54,7 @@ const IndexPage = ({ location }) => {
     <main>
       <title>Home Page</title>
       <h1>Welcome To DW Guitars Academy</h1>
-      <button onlClick={() => navigate("setpassword")}>
-        Set Password Page
-      </button>
+      <Link to="/setpassword">Set Password Page</Link>
     </main>
   );
 };
