@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEfect, useContext } from "react";
 import GoTrue from "gotrue-js";
 import { navigate, Link } from "gatsby";
 import {
@@ -12,6 +12,13 @@ import { StaticImage } from "gatsby-plugin-image";
 const Setpassword = () => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
+
+  useEffect(() => {
+    console.log("I Fired On Load");
+    const token = location?.hash.split("=")[1];
+    dispatch({ type: "SET_INVITE_TOKEN", token: token });
+    console.log("INDEX TOKEN", token);
+  }, []);
 
   const { token } = contextState;
   console.log("setPassword TOKEN", token);
