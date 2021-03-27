@@ -19,14 +19,16 @@ const IndexPage = ({ location }) => {
   const contextState = useContext(GlobalStateContext);
 
   useEffect(() => {
+    console.log("I Fired On Load");
     const token = location?.hash.split("=")[1];
     dispatch({ type: "SET_INVITE_TOKEN", token: token });
     console.log("INDEX TOKEN", token);
   }, []);
 
   useEffect(() => {
+    console.log("Testy contextState.token", contextState.token);
     if (contextState.token) {
-      navigate("/setpassword");
+      navigate("/setpassword/");
     }
   }, [contextState.token]);
 
