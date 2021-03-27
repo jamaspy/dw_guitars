@@ -4,7 +4,7 @@ const Team = () => {
   return (
     <main className={teamStyles.container}>
       <div className={teamStyles.avatar_main_container}>
-        <div className={teamStyles.avatar_image}>1</div>
+        <div className={teamStyles.avatar_image} />
         <h3 className={teamStyles.avatar_name}>James Aspinall</h3>
         <p className={teamStyles.avatar_bio}>
           Nulla enim sint nulla labore incididunt laboris. Sint culpa culpa
@@ -17,7 +17,7 @@ const Team = () => {
         </p>
       </div>
       <div className={teamStyles.avatar_main_container}>
-        <div className={teamStyles.avatar_image}>1</div>
+        <div className={teamStyles.avatar_image} />
         <h3 className={teamStyles.avatar_name}>James Aspinall</h3>
         <p className={teamStyles.avatar_bio}>
           Nulla enim sint nulla labore incididunt laboris. Sint culpa culpa
@@ -30,7 +30,7 @@ const Team = () => {
         </p>
       </div>
       <div className={teamStyles.avatar_main_container}>
-        <div className={teamStyles.avatar_image}>1</div>
+        <div className={teamStyles.avatar_image} />
         <h3 className={teamStyles.avatar_name}>James Aspinall</h3>
         <p className={teamStyles.avatar_bio}>
           Nulla enim sint nulla labore incididunt laboris. Sint culpa culpa

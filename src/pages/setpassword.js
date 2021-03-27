@@ -5,6 +5,9 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../context/GlobalContextProvider";
+import * as passwordStyles from "../scss/setpassword.module.scss";
+import { StaticImage } from "gatsby-plugin-image";
+
 // markup
 const Setpassword = () => {
   const contextState = useContext(GlobalStateContext);
@@ -43,20 +46,29 @@ const Setpassword = () => {
   };
 
   return (
-    <main>
-      <title>Home Page</title>
-      <h1>Welcome, lets setup your password</h1>
-      <h1>This is token: {token}</h1>
-      <Link to="/">Home</Link>
-      <label htmlFor="password">
-        Set Your Password
+    <main className={passwordStyles.form_container}>
+      <title>Setup Password</title>
+      <Link to="/">
+        <StaticImage
+          className={passwordStyles.form_logo}
+          src="../images/Black.svg"
+          alt="dw_logo"
+        />
+      </Link>
+      <p style={{ marginBottom: 20 }}>Set You Password Below</p>
+
+      <div className={passwordStyles.form_input_field}>
+        <label htmlFor="password">Password</label>
         <input
           name="password"
           type="password"
           onChange={(event) => handleChange(event)}
         />
-      </label>
-      <button onClick={setPassword}>Set Password</button>
+      </div>
+
+      <button className={passwordStyles.form_button} onClick={setPassword}>
+        Set Password
+      </button>
     </main>
   );
 };
