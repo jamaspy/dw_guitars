@@ -1,4 +1,4 @@
-import React, { useState, useEfect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import GoTrue from "gotrue-js";
 import { navigate, Link } from "gatsby";
 import {
