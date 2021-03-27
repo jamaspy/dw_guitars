@@ -5,6 +5,14 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../context/GlobalContextProvider";
+import * as indexStyles from "../scss/index.module.scss";
+import {
+  Contact,
+  Landing,
+  Team,
+  Testimonials,
+  Videos,
+} from "../components/landing_sections";
 
 const IndexPage = ({ location }) => {
   const dispatch = useContext(GlobalDispatchContext);
@@ -45,7 +53,7 @@ const IndexPage = ({ location }) => {
   };
 
   return (
-    <main>
+    <main className={indexStyles.main_container}>
       <title>Home Page</title>
       <h1>Welcome To DW Guitars Academy</h1>
       {contextState.access_token ? (
@@ -56,6 +64,11 @@ const IndexPage = ({ location }) => {
       ) : (
         <Link to="/app/login">Login</Link>
       )}
+      <Landing />
+      <Team />
+      <Testimonials />
+      <Videos />
+      <Contact />
     </main>
   );
 };
