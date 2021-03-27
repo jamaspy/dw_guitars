@@ -6,6 +6,8 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider";
 import * as loginStyles from "../../scss/login.module.scss";
+import { StaticImage } from "gatsby-plugin-image";
+
 const Login = () => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
@@ -54,6 +56,13 @@ const Login = () => {
 
   return (
     <main className={loginStyles.form_container}>
+      <Link to="/">
+        <StaticImage
+          className={loginStyles.form_logo}
+          src="../../images/Black.svg"
+          alt="dw_logo"
+        />
+      </Link>
       <div className={loginStyles.form_input_field}>
         <label htmlFor="email">Email </label>
         <input name="email" type="email" onChange={(e) => handleChange(e)} />
@@ -71,7 +80,6 @@ const Login = () => {
       <button className={loginStyles.form_button} onClick={handleLogin}>
         {loading ? "Logging In..." : "Login"}
       </button>
-      <Link to="/">Home</Link>
     </main>
   );
 };
