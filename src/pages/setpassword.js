@@ -13,16 +13,15 @@ const Setpassword = () => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
-  useEffect(() => {
-    console.log("I Fired On Load");
-    const token = location?.hash.split("=")[1];
-    dispatch({ type: "SET_INVITE_TOKEN", token: token });
-    console.log("INDEX TOKEN", token);
-  }, []);
+  // useEffect(() => {
+  //   console.log("I Fired On Load");
+  //   const token = location?.hash.split("=")[1];
+  //   dispatch({ type: "SET_INVITE_TOKEN", token: token });
+  //   console.log("INDEX TOKEN", token);
+  // }, []);
 
-  const { token } = contextState;
-  console.log("setPassword TOKEN", token);
-  console.log("setPassword ContextState", contextState);
+  // console.log("setPassword TOKEN", token);
+  // console.log("setPassword ContextState", contextState);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
@@ -42,6 +41,7 @@ const Setpassword = () => {
 
   const setPassword = () => {
     const { password } = state;
+    const token = location?.hash.split("=")[1];
     auth
       .acceptInvite(token, password)
       .then((res) => {
