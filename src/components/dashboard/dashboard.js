@@ -11,6 +11,7 @@ import {
   GradeEight,
 } from "./grades";
 import { StaticImage } from "gatsby-plugin-image";
+import { navigate } from "gatsby";
 
 const Dashboard = () => {
   const [grade, setGrade] = useState(undefined);
@@ -41,7 +42,11 @@ const Dashboard = () => {
     <>
       <div className={dashStyles.container}>
         <div className={dashStyles.menu}>
-          <StaticImage src="../../images/White.svg" alt="dw_logo" />
+          <StaticImage
+            onClick={() => navigate("/")}
+            src="../../images/White.svg"
+            alt="dw_logo"
+          />
           <h1>Choose Your Grade</h1>
           <div
             className={

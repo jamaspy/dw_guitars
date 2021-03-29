@@ -6,7 +6,12 @@ const Testimonials = () => {
   return (
     <main className={testimonialStyles.container}>
       {testimonials.map((test, index) => (
-        <Testimonial comment={test.comment} />
+        <Testimonial
+          key={index}
+          comment={test.comment}
+          isLite={test.isLite}
+          side={test.side}
+        />
       ))}
     </main>
   );

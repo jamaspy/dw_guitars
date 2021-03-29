@@ -8,6 +8,7 @@
   @include respond-to("small") {
     flex-direction: row;
   }
+  margin-bottom: 50px;
 }
 
 .avatar_main_container {

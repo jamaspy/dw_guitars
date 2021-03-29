@@ -43,27 +43,6 @@ const IndexPage = ({ location }) => {
   return (
     <main className={indexStyles.container}>
       <title>Home Page</title>
-
-      {contextState.access_token ? (
-        <>
-          <Link
-            style={{ position: "absolute", right: 100, top: 30 }}
-            to="/app/dashboard"
-          >
-            Enter Dashboard
-          </Link>
-          <button
-            style={{ position: "absolute", right: 30, top: 30 }}
-            onClick={handleLogOut}
-          >
-            Log Out
-          </button>
-        </>
-      ) : (
-        <Link className={indexStyles.login_link} to="/app/login">
-          Login
-        </Link>
-      )}
       <Landing />
       <Team />
       <Testimonials />

@@ -5,4 +5,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.login_link {
+  text-decoration: none;
+  color: $color-dark;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 20px;
 }
