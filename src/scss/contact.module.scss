@@ -1,0 +1,80 @@
+@import "./mixins";
+@import "./colours";
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 50px;
+}
+
+.form_logo {
+  margin-bottom: 20px;
+}
+
+.form_input_field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  & label {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  & input {
+    border-radius: 5px;
+    border: 2px solid $color-black;
+    padding: 5px;
+    font-family: "Josefin Sans";
+    font-size: 1.1rem;
+  }
+  & textarea {
+    border-radius: 5px;
+    border: 2px solid $color-black;
+    padding: 5px;
+    font-family: "Josefin Sans";
+    font-size: 1.1rem;
+  }
+  & input:focus {
+    outline: none;
+  }
+}
+
+.form_button {
+  min-height: 50px;
+  min-width: 300px;
+  border: 2px solid $color-black;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: white;
+  padding: 5px 15px 5px 15px;
+  font-family: "Josefin Sans";
+  font-size: 1.5rem;
+  transition-duration: 0.5s;
+  &:hover {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-color: $color-dark;
+    border: 2px solid $color-dark;
+    color: $color-white;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.error_message {
+  font-size: smaller;
+  color: $color-red;
+  margin-bottom: 20px;
+  text-align: center;
+}

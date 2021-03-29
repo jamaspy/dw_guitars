@@ -4,3 +4,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.login_link {
+  text-decoration: none;
+  color: $color-dark;
+  position: absolute;
+  right: 30;
+  top: 3;
+}

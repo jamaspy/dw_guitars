@@ -9,19 +9,17 @@ import * as passwordStyles from "../scss/setpassword.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 
 // markup
-const Setpassword = () => {
+const Setpassword = ({ location }) => {
   const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
-  // useEffect(() => {
-  //   console.log("I Fired On Load");
-  //   const token = location?.hash.split("=")[1];
-  //   dispatch({ type: "SET_INVITE_TOKEN", token: token });
-  //   console.log("INDEX TOKEN", token);
-  // }, []);
+  useEffect(() => {
+    console.log("I Fired On Load");
+    const token = location?.hash.split("=")[1];
+    dispatch({ type: "SET_INVITE_TOKEN", token: token });
+    console.log("INDEX TOKEN", token);
+  }, []);
 
-  // console.log("setPassword TOKEN", token);
-  // console.log("setPassword ContextState", contextState);
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",

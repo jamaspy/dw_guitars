@@ -8,6 +8,7 @@ import {
 import * as indexStyles from "../scss/index.module.scss";
 import {
   Contact,
+  Footer,
   Landing,
   Team,
   Testimonials,
@@ -17,21 +18,6 @@ import {
 const IndexPage = ({ location }) => {
   const dispatch = useContext(GlobalDispatchContext);
   const contextState = useContext(GlobalStateContext);
-
-  useEffect(() => {
-    console.log("I Fired On Load");
-    const token = location?.hash.split("=")[1];
-    dispatch({ type: "SET_INVITE_TOKEN", token: token });
-    console.log("INDEX TOKEN", token);
-  }, []);
-
-  useEffect(() => {
-    console.log("Testy contextState.token", contextState.token);
-    if (contextState.token) {
-      navigate("/setpassword/");
-    }
-  }, [contextState.token]);
-
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",
@@ -55,8 +41,9 @@ const IndexPage = ({ location }) => {
   };
 
   return (
-    <main>
+    <main className={indexStyles.container}>
       <title>Home Page</title>
+
       {contextState.access_token ? (
         <>
           <Link
@@ -73,10 +60,7 @@ const IndexPage = ({ location }) => {
           </button>
         </>
       ) : (
-        <Link
-          style={{ position: "absolute", right: 30, top: 30 }}
-          to="/app/login"
-        >
+        <Link className={indexStyles.login_link} to="/app/login">
           Login
         </Link>
       )}
@@ -85,6 +69,7 @@ const IndexPage = ({ location }) => {
       <Testimonials />
       <Videos />
       <Contact />
+      <Footer />
     </main>
   );
 };

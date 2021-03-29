@@ -1,0 +1,20 @@
+@import "./colours";
+.container {
+  background-color: $color-dark;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $color-light;
+  font-weight: 100;
+}
+
+.icon {
+  color: $color-light;
+  font-size: 1.5rem;
+  margin: 10px;
+  &:hover {
+    color: $color-white;
+  }
+}
