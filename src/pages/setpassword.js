@@ -29,7 +29,7 @@ const Setpassword = () => {
   });
 
   const [state, setState] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const handleChange = (evt) => {
     const value = evt.target.value;
     setState({
@@ -41,12 +41,14 @@ const Setpassword = () => {
 
   const setPassword = () => {
     const { password } = state;
+    setLoading(true);
     const token = location?.hash.split("=")[1];
     auth
       .acceptInvite(token, password)
       .then((res) => {
         dispatch({ type: "SET_INVITE_TOKEN", token: undefined });
         console.log("RES from Signup", res?.token?.access_token);
+        setLoading(false);
         navigate("/login");
       })
       .catch((err) => console.error(err));
@@ -54,7 +56,7 @@ const Setpassword = () => {
 
   return (
     <main className={passwordStyles.form_container}>
-      <title>Setup Password</title>
+      <title>Create Password</title>
       <Link to="/">
         <StaticImage
           className={passwordStyles.form_logo}
@@ -68,13 +70,17 @@ const Setpassword = () => {
         <label htmlFor="password">Password</label>
         <input
           name="password"
-          type="password"
+          type="text"
           onChange={(event) => handleChange(event)}
         />
       </div>
 
-      <button className={passwordStyles.form_button} onClick={setPassword}>
-        Set Password
+      <button
+        disabled={isLoading}
+        className={passwordStyles.form_button}
+        onClick={setPassword}
+      >
+        {isLoading ? "Setting Password..." : "Save Password"}
       </button>
     </main>
   );
