@@ -76,11 +76,11 @@ const Setpassword = () => {
       </div>
 
       <button
-        disabled={isLoading}
+        disabled={loading}
         className={passwordStyles.form_button}
         onClick={setPassword}
       >
-        {isLoading ? "Setting Password..." : "Save Password"}
+        {loading ? "Setting Password..." : "Save Password"}
       </button>
     </main>
   );
