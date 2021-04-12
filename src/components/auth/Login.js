@@ -28,7 +28,8 @@ const Login = () => {
     console.log(login);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     setLoading(true);
     const { email, password } = login;
     auth
@@ -38,12 +39,13 @@ const Login = () => {
           type: "SET_ACCESS_TOKEN",
           token: response.token.access_token,
         });
+        localStorage.setItem("accessToken", response.token.access_token);
         dispatch({
           type: "SET_LOGIN_ERROR",
           error: "",
         });
         setLoading(false);
-        navigate("/");
+        navigate("/app/dashboard");
       })
       .catch((error) => {
         dispatch({
@@ -55,7 +57,10 @@ const Login = () => {
   };
 
   return (
-    <main className={loginStyles.form_container}>
+    <form
+      className={loginStyles.form_container}
+      onSubmit={(e) => handleLogin(e)}
+    >
       <Link to="/">
         <StaticImage
           className={loginStyles.form_logo}
@@ -77,10 +82,10 @@ const Login = () => {
         />
       </div>
       <p className={loginStyles.error_message}>{contextState.login_error}</p>
-      <button className={loginStyles.form_button} onClick={handleLogin}>
+      <button className={loginStyles.form_button} type="submit">
         {loading ? "Logging In..." : "Login"}
       </button>
-    </main>
+    </form>
   );
 };
 
