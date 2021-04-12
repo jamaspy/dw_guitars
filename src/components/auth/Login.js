@@ -81,8 +81,14 @@ const Login = () => {
           onChange={(e) => handleChange(e)}
         />
       </div>
+      <p className={loginStyles.forgotten_password_text}>Forgotten Password</p>
       <p className={loginStyles.error_message}>{contextState.login_error}</p>
-      <button className={loginStyles.form_button} type="submit">
+      <button
+        className={
+          loading ? loginStyles.form_button_loading : loginStyles.form_button
+        }
+        type="submit"
+      >
         {loading ? "Logging In..." : "Login"}
       </button>
     </form>

@@ -15,31 +15,7 @@ import {
   Videos,
 } from "../components/landing_sections";
 
-const IndexPage = ({ location }) => {
-  const dispatch = useContext(GlobalDispatchContext);
-  const contextState = useContext(GlobalStateContext);
-  const auth = new GoTrue({
-    APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
-    audience: "",
-    setCookie: false,
-  });
-  const user = auth.currentUser();
-  const handleLogOut = () => {
-    user
-      .logout()
-      .then(() => {
-        dispatch({
-          type: "SET_ACCESS_TOKEN",
-          token: undefined,
-        });
-        console.log("User Logged Out");
-      })
-      .catch((error) => {
-        console.log("Failed to logout user: %o", error);
-        throw error;
-      });
-  };
-
+const IndexPage = () => {
   return (
     <main className={indexStyles.container}>
       <title>Home Page</title>

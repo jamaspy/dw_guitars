@@ -35,14 +35,14 @@ const Landing = () => {
     <div className={landingStyles.main_container}>
       {contextState.access_token ? (
         <>
-          <Link
-            style={{ position: "absolute", right: 100, top: 30 }}
-            to="/app/dashboard"
-          >
-            Enter Dashboard
-          </Link>
           <button
-            style={{ position: "absolute", right: 30, top: 30 }}
+            className={landingStyles.dashboard_button}
+            onClick={() => navigate("/app/dashboard")}
+          >
+            Dashboard
+          </button>
+          <button
+            className={landingStyles.logout_button}
             onClick={handleLogOut}
           >
             Log Out
