@@ -27,6 +27,7 @@ const ResetPassword = ({ location }) => {
   const [state, setState] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
+  const [match, setMatch] = useState(true);
   const handleChange = (evt) => {
     const value = evt.target.value;
     setState({
@@ -34,6 +35,16 @@ const ResetPassword = ({ location }) => {
       [evt.target.name]: value,
     });
     console.log(state);
+  };
+
+  const handlePasswordsMatch = () => {
+    const { password, confirm_password } = state;
+    if (password !== confirm_password) {
+      setMatch(false);
+      return false;
+    }
+    setMatch(true);
+    return true;
   };
 
   const resetPassword = () => {
@@ -84,6 +95,7 @@ const ResetPassword = ({ location }) => {
           name="password"
           type="password"
           onChange={(event) => handleChange(event)}
+          onBlur={handlePasswordsMatch}
         />
       </div>
       <div className={passwordStyles.form_input_field}>
@@ -92,11 +104,18 @@ const ResetPassword = ({ location }) => {
           name="confirm_password"
           type="password"
           onChange={(event) => handleChange(event)}
+          onBlur={handlePasswordsMatch}
         />
       </div>
-
+      {!match && (
+        <>
+          <p className={passwordStyles.error_message}>
+            Passwords Do Not Match. Please check and try again.
+          </p>
+        </>
+      )}
       <button
-        disabled={loading}
+        disabled={loading || !match}
         className={passwordStyles.form_button}
         onClick={resetPassword}
       >
