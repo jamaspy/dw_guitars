@@ -1,4 +1,6 @@
 @import "./colours";
+@import "./constants";
+
 .main_container {
   background-color: $color-white;
   height: 100vh;
@@ -12,7 +14,46 @@
   text-decoration: none;
   color: $color-dark;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 0px;
   padding: 20px;
+  font-family: $font;
+  font-size: 1rem;
+}
+.dashboard_button {
+  border: none;
+  text-decoration: none;
+  color: $color-dark;
+  position: absolute;
+  right: 100px;
+  top: 20px;
+  background-color: $color-white;
+  font-family: $font;
+  font-size: 1rem;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $color-black;
+    text-decoration: underline;
+  }
+}
+
+.logout_button {
+  border: none;
+  text-decoration: none;
+  color: $color-dark;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  background-color: $color-white;
+  font-family: $font;
+  font-size: 1rem;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $color-black;
+    text-decoration: underline;
+  }
 }
