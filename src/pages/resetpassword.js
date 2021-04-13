@@ -44,6 +44,7 @@ const ResetPassword = ({ location }) => {
       .then((user) => {
         setLoading(false);
         console.log("Updated user %s", user);
+        navigate("/login/");
       })
       .catch((error) => {
         setLoading(false);
