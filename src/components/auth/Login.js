@@ -83,7 +83,7 @@ const Login = () => {
       </div>
       <p
         className={loginStyles.forgotten_password_text}
-        onClick={() => navigate("/resetpassword/")}
+        onClick={() => navigate("/requestnewpassword/")}
       >
         Forgotten Password
       </p>
