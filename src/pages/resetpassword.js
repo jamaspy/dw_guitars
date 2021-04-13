@@ -26,6 +26,8 @@ const ResetPassword = ({ location }) => {
 
   const [state, setState] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
+  const [match, setMatch] = useState(true);
   const handleChange = (evt) => {
     const value = evt.target.value;
     setState({
@@ -35,28 +37,41 @@ const ResetPassword = ({ location }) => {
     console.log(state);
   };
 
-  // const resetPassword = () => {
-  //   const { password } = state;
-  //   setLoading(true);
-  //   const token = location?.hash.split("=")[1];
-  //   auth
-  //     .acceptInvite(token, password)
-  //     .then((res) => {
-  //       dispatch({ type: "SET_INVITE_TOKEN", token: undefined });
-  //       console.log("RES from Signup", res?.token?.access_token);
-  //       setLoading(false);
-  //       navigate("/login");
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+  const handlePasswordsMatch = () => {
+    const { password, confirm_password } = state;
+    if (password !== confirm_password) {
+      setMatch(false);
+      return false;
+    }
+    setMatch(true);
+    return true;
+  };
+
+  const resetPassword = () => {
+    const { password } = state;
+    setLoading(true);
+    user
+      .update({ password: password })
+      .then((user) => {
+        setLoading(false);
+        console.log("Updated user %s", user);
+        navigate("/login/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log("Failed to update user: %o", error);
+        throw error;
+      });
+  };
 
   useEffect(() => {
     const token = location?.hash.split("=")[1];
     auth
       .recover(token, true)
-      .then((response) =>
-        console.log("Logged in as %s", JSON.stringify({ response }))
-      )
+      .then((response) => {
+        setUser(response);
+        console.log("Logged in as %s", JSON.stringify({ response }));
+      })
       .catch((error) =>
         console.log("Failed to verify recover token: %o", error)
       );
@@ -80,6 +95,7 @@ const ResetPassword = ({ location }) => {
           name="password"
           type="password"
           onChange={(event) => handleChange(event)}
+          onBlur={handlePasswordsMatch}
         />
       </div>
       <div className={passwordStyles.form_input_field}>
@@ -88,13 +104,20 @@ const ResetPassword = ({ location }) => {
           name="confirm_password"
           type="password"
           onChange={(event) => handleChange(event)}
+          onBlur={handlePasswordsMatch}
         />
       </div>
-
+      {!match && (
+        <>
+          <p className={passwordStyles.error_message}>
+            Passwords Do Not Match. Please check and try again.
+          </p>
+        </>
+      )}
       <button
-        disabled={loading}
+        disabled={loading || !match}
         className={passwordStyles.form_button}
-        // onClick={resetPassword}
+        onClick={resetPassword}
       >
         {loading ? "Setting Password..." : "Reset Password"}
       </button>
