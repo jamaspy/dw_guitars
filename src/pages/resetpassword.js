@@ -60,9 +60,6 @@ const ResetPassword = ({ location }) => {
       .catch((error) =>
         console.log("Failed to verify recover token: %o", error)
       );
-    return () => {
-      cleanup;
-    };
   }, []);
 
   return (
