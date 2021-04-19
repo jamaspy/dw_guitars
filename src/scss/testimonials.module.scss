@@ -1,8 +1,15 @@
 @import "./mixins";
 @import "./colours";
 
+.main {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .container {
-  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +18,13 @@
     flex-direction: row;
   }
   padding: 20px;
-  min-height: 50vh;
+  // min-height: 50vh;
+}
+
+.title_container {
+  color: $color-black;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .testimonial_main_container_dark {

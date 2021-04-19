@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import GoTrue from "gotrue-js";
 import { navigate, Link } from "gatsby";
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../context/GlobalContextProvider";
+import { GlobalDispatchContext } from "../context/GlobalContextProvider";
 import * as passwordStyles from "../scss/setpassword.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 
 // markup
 const ResetPassword = ({ location }) => {
-  const contextState = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
   useEffect(() => {

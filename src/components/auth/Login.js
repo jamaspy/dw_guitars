@@ -81,12 +81,12 @@ const Login = () => {
           onChange={(e) => handleChange(e)}
         />
       </div>
-      <p
+      <Link
+        to="/requestnewpassword/"
         className={loginStyles.forgotten_password_text}
-        onClick={() => navigate("/requestnewpassword/")}
       >
-        Forgotten Password
-      </p>
+        <p>Forgotten Password</p>
+      </Link>
       <p className={loginStyles.error_message}>{contextState.login_error}</p>
       <button
         className={

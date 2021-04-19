@@ -1,4 +1,13 @@
 @import "./mixins";
+@import "./colours";
+
+.main {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 .container {
   display: flex;
@@ -8,12 +17,19 @@
   @include respond-to("small") {
     flex-direction: row;
   }
-  margin-bottom: 50px;
+}
+
+.title_container {
+  color: $color-black;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .avatar_main_container {
   width: 300px;
   display: flex;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -21,21 +37,32 @@
   margin-right: 15px;
 }
 .avatar_image {
-  border: 2px solid black;
+  border: 2px solid $color-black;
   height: 150px;
   width: 150px;
   border-radius: 100%;
   display: flex;
+  position: relative;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 1px 1px gray;
   margin: 30px;
-  background-image: url("../images/placeholder.png");
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.image {
+  display: inline;
+  margin: 0 auto;
+  margin-left: -25%; //centers the image
+  height: 100%;
+  width: auto;
+}
 .avatar_name {
+  color: $color-black;
   text-align: center;
   margin-bottom: 30px;
   font-size: 1.3rem;
@@ -43,4 +70,5 @@
 
 .avatar_bio {
   text-align: center;
+  color: $color-black;
 }

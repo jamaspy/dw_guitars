@@ -1,10 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import { navigate, Link } from "gatsby";
-import GoTrue from "gotrue-js";
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../context/GlobalContextProvider";
+import React from "react";
 import * as indexStyles from "../scss/index.module.scss";
 import {
   Contact,

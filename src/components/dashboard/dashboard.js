@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as dashStyles from "../../scss/dash.module.scss";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery, Link } from "gatsby";
 import Grade from "./components/Grade";
 import { StaticImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
@@ -36,33 +36,34 @@ const Dashboard = () => {
   };
 
   const GradeIcon = ({ number }) => (
-    <div
+    <button
       className={
         grade === +number
           ? dashStyles.grade_icon_selected
           : dashStyles.grade_icon
       }
       onClick={() => {
-        console.log(number, grade);
         setGrade(+number);
       }}
     >
       <p>G{number}</p>
-    </div>
+    </button>
   );
 
   return (
     <>
       <div className={dashStyles.container}>
         <div className={dashStyles.menu}>
-          <StaticImage
-            onClick={() => navigate("/")}
-            src="../../images/White.svg"
-            alt="dw_logo"
-          />
+          <Link>
+            <StaticImage
+              onClick={() => navigate("/")}
+              src="../../images/White.svg"
+              alt="dw_logo"
+            />
+          </Link>
           <h2>First Steps</h2>
           <div className={dashStyles.step_icon_container}>
-            <div
+            <button
               className={
                 grade === -2
                   ? dashStyles.step_icon_selected
@@ -71,8 +72,8 @@ const Dashboard = () => {
               onClick={() => setGrade(-2)}
             >
               S1
-            </div>
-            <div
+            </button>
+            <button
               className={
                 grade === -1
                   ? dashStyles.step_icon_selected
@@ -84,7 +85,7 @@ const Dashboard = () => {
               }}
             >
               S2
-            </div>
+            </button>
           </div>
           <h2>Select Grade</h2>
           <GradeIcon number="1" />

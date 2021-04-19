@@ -1,16 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import GoTrue from "gotrue-js";
-import { navigate, Link } from "gatsby";
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../context/GlobalContextProvider";
+import { Link } from "gatsby";
 import * as passwordStyles from "../scss/setpassword.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 const RequestPassword = () => {
-  const contextState = useContext(GlobalStateContext);
-  const dispatch = useContext(GlobalDispatchContext);
-
   const auth = new GoTrue({
     APIUrl: "https://dwguitars.netlify.app/.netlify/identity",
     audience: "",

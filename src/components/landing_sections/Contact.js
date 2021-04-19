@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as contactStyles from "../../scss/contact.module.scss";
 const Contact = () => {
   const [login, setLogin] = useState("");
-  const [loading, setLoading] = useState(false);
+
   const handleChange = (evt) => {
     const value = evt.target.value;
     setLogin({
