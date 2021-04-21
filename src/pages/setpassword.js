@@ -5,13 +5,13 @@ import { GlobalDispatchContext } from "../context/GlobalContextProvider";
 import * as passwordStyles from "../scss/setpassword.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 
-// markup
 const Setpassword = ({ location }) => {
   const dispatch = useContext(GlobalDispatchContext);
 
   useEffect(() => {
     const token = location?.hash.split("=")[1];
     dispatch({ type: "SET_INVITE_TOKEN", token: token });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const auth = new GoTrue({
@@ -28,7 +28,6 @@ const Setpassword = ({ location }) => {
       ...state,
       [evt.target.name]: value,
     });
-    console.log(state);
   };
 
   const setPassword = () => {
@@ -39,7 +38,6 @@ const Setpassword = ({ location }) => {
       .acceptInvite(token, password)
       .then((res) => {
         dispatch({ type: "SET_INVITE_TOKEN", token: undefined });
-        console.log("RES from Signup", res?.token?.access_token);
         setLoading(false);
         navigate("/login");
       })

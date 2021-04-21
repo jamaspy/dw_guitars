@@ -15,7 +15,7 @@ const Contact = () => {
     <main className={contactStyles.container}>
       <h1>Get In Touch</h1>
       <div className={contactStyles.form_container}>
-        <form>
+        <form style={{ width: "90%" }}>
           <div className={contactStyles.form_input_field}>
             <label htmlFor="email">Name</label>
             <input name="name" type="text" onChange={(e) => handleChange(e)} />

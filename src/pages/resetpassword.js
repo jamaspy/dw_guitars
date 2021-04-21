@@ -12,6 +12,7 @@ const ResetPassword = ({ location }) => {
   useEffect(() => {
     const token = location?.hash.split("=")[1];
     dispatch({ type: "SET_INVITE_TOKEN", token: token });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const auth = new GoTrue({
@@ -71,6 +72,7 @@ const ResetPassword = ({ location }) => {
       .catch((error) =>
         console.log("Failed to verify recover token: %o", error)
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

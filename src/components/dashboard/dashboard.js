@@ -4,7 +4,7 @@ import { graphql, useStaticQuery, Link } from "gatsby";
 import Grade from "./components/Grade";
 import { StaticImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
-
+import Video from "../video/Video";
 const Dashboard = () => {
   const [grade, setGrade] = useState(undefined);
   const data = useStaticQuery(graphql`
@@ -50,6 +50,14 @@ const Dashboard = () => {
     </button>
   );
 
+  const renderVideo = () => {
+    return (
+      grade && (
+        <Video src="http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8" />
+      )
+    );
+  };
+
   return (
     <>
       <div className={dashStyles.container}>
@@ -61,7 +69,7 @@ const Dashboard = () => {
               alt="dw_logo"
             />
           </Link>
-          <h2>First Steps</h2>
+          <h2 className={dashStyles.title}>First Steps</h2>
           <div className={dashStyles.step_icon_container}>
             <button
               className={
@@ -87,7 +95,7 @@ const Dashboard = () => {
               S2
             </button>
           </div>
-          <h2>Select Grade</h2>
+          <h2 className={dashStyles.title}>Select Grade</h2>
           <GradeIcon number="1" />
           <GradeIcon number="2" />
           <GradeIcon number="3" />
@@ -105,6 +113,7 @@ const Dashboard = () => {
             </h1>
           )}
           {renderGrade()}
+          <div className={dashStyles.video_container}>{renderVideo()}</div>
         </div>
       </div>
       ;
